@@ -1,55 +1,95 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import AuthContext from "../../contexts/AuthContsxt";
+import { GiMaterialsScience } from "react-icons/gi";
+import ProfilePic from "../UserProfilePic";
 import DarkModeContext from "../../contexts/DarkModeContext";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
-import AuthContext from "../../contexts/AuthContsxt";
+import  logo  from "../../ui/logo.svg"
+// 
 
 const Navbar = () => {
-  
-  const {isLoggedIn, logout} = useContext(AuthContext);
-  const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  const { isLoggedIn, profilePic, logout } = useContext(AuthContext);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   return (
-    <nav className="sm:gap-10 shadow-2xl p-8 gap-4 flex bg-fuchsia-50 text-fuchsia-900 dark:bg-fuchsia-900 dark:text-fuchsia-50">
-      {isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/home">
-        All Topics
-      </NavLink>}
-      <NavLink className="border-white border-2 p-2 rounded-lg" to="/about">
+    <nav
+      className="sm:gap-10 shadow-md pt-4 pl-4 pr-4 gap-4 flex bg-white/95
+    text-sky-900 font-bold font-mono 
+     dark:bg-slate-900 dark:text-white"
+    >
+      <NavLink className="p-2" to="/home">
+        <img src={logo} style={{ width: '50px', height: '50px' }}/>
+        {/* <GiMaterialsScience /> */}
+      </NavLink>
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/home">
+          All Topics
+        </NavLink>
+      )}
+      <NavLink className="hover:underline  p-2 " to="/about">
         About Us
       </NavLink>
-      {isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/biology">
-        Biology
-      </NavLink>}
-      {isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/chemistry">
-        Chemistry
-      </NavLink>}
-      {isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/physics">
-        Physics
-      </NavLink>}
-      {isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/space">
-        Space
-      </NavLink>}
-      {isLoggedIn &&<NavLink className="border-white border-2 p-2 rounded-lg" to="/tech">
-        Tech
-      </NavLink>}
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/biology">
+          Biology
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/chemistry">
+          Chemistry
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/physics">
+          Physics
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/space">
+          Space
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <NavLink className="hover:underline  p-2 " to="/tech">
+          Tech
+        </NavLink>
+      )}
       <div className="flex-1"></div>
-      <button 
-      onClick={() => {
-        toggleDarkMode();
-      }}
+
+      {isLoggedIn && (
+        <NavLink className="p-2 " to="/userInfo">
+          <ProfilePic profilePic={profilePic} />
+        </NavLink>
+      )}
+
+      {!isLoggedIn && (
+        <NavLink className="hover:underline p-2 " to="/login">
+          Log In
+        </NavLink>
+      )}
+      {!isLoggedIn && (
+        <NavLink className="hover:underline p-2 " to="/register">
+          Register
+        </NavLink>
+      )}
+      {isLoggedIn && (
+        <button className="hover:underline"
+          onClick={() => {
+            logout();
+          }}
         >
-        {darkMode ? <BsSunFill />: <BsMoonFill />}
+          Logout
+        </button>
+      )}
+      <button
+        onClick={() => {
+          toggleDarkMode();
+        }}
+      >
+        {darkMode ? <BsSunFill /> : <BsMoonFill />}
       </button>
-      {!isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/login">
-        Log In
-      </NavLink>}
-      {!isLoggedIn && <NavLink className="border-white border-2 p-2 rounded-lg" to="/register">
-        Register
-      </NavLink>}
-      {isLoggedIn && <button onClick={() => {
-        logout();
-      }}>Logout</button>}
     </nav>
   );
 };
