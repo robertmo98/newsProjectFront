@@ -12,9 +12,8 @@ const articleCard = (article: ArticleProps) => {
   return (
     <Link
       to={`/news/${article.id}`}
-      className="block cursor-pointer text-slate-750 font-sans hover:underline my-2 rounded-lg shadow-md p-2 w-2/3  bg-slate-200 
-      dark:text-white dark:bg-slate-900 ml-2
-      "
+      className="block cursor-pointer text-slate-750 font-sans hover:underline my-2 rounded-lg shadow-md bg-slate-200 
+      dark:text-white dark:bg-slate-900 ml-2"
       key={article.id}
     >
       <div className="flex">

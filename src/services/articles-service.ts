@@ -10,7 +10,6 @@ const createArticle = (articleData: ArticleProps) => {
     url: baseUrl,
     data: articleData,
   };
-
   return request(config);
 };
 

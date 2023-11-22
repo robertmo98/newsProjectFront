@@ -59,3 +59,20 @@ export interface CategoryHeaderProps {
   subject: string;
 }
 
+export interface AddProps {
+  img?: string;
+  header?: string;
+  paragraph?: string;
+}
+
+export interface AddSZoneProps {
+  img1?: string;
+  img2?: string;
+  img3?: string;
+  header1: string;
+  header2: string;
+  header3: string;
+  paragraph1?: string;
+  paragraph2?: string;
+  paragraph3?: string;
+}
