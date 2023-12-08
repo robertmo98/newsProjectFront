@@ -27,7 +27,7 @@ const Tech = () => {
     <>
       <CategoryHeader subject="Tech" />
       <div className="flex justify-between ">
-        <div className="w-2/3 pl-24">
+        <div className="w-2/3 lg:pl-24">
           {displayArticles?.map((article) => (
             <ArticleCard
               id={article.id}
@@ -37,6 +37,7 @@ const Tech = () => {
               title={article.title}
               content={article.content}
               mainImg={article.mainImg}
+              date={article.date}
             />
           ))}
         </div>

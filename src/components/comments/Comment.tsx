@@ -9,9 +9,9 @@ const Comment = (comment: CommentProps) => {
   const { isAdmin } = useContext(AuthContext);
 
   return (
-    <div className="bg-gray-100 mt-4" >
+    <div className="bg-gray-50 mt-4 dark:bg-slate-800 w-3/4 md:w-1/2 rounded-lg whitespace-pre-line">
       <div className="flex justify-between">
-        <div className="flex pl-4 mt-2">
+        <div className="flex pl-4 mt-2 items-center">
           <img src={comment.user.profilePic} className="rounded-full w-8" />
           <h3 className="text-left pl-6 font-bold">{comment.user.username}</h3>
         </div>
@@ -37,7 +37,6 @@ const Comment = (comment: CommentProps) => {
                           Swal.fire("Comment has been deleted!", "", "success");
                         })
                         .catch((e) => {
-                          console.log(e.response.data);
                           Swal.fire("Something went wrong", "", "error");
                         })
                         .finally(() => {

@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 import * as Yup from "yup";
-import { useNavigate, useParams } from 'react-router-dom'
-import { Field, Formik, Form, ErrorMessage } from 'formik';
-import Spinner from '../components/spinner/Spinner';
-import articlesService from '../services/articles-service';
-import Swal from 'sweetalert2';
+import { Field, Formik, Form, ErrorMessage } from "formik";
+import Spinner from "../components/spinner/Spinner";
+import articlesService from "../services/articles-service";
+import Swal from "sweetalert2";
 
 const PostArticle = () => {
-
-  const nav = useNavigate();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -35,14 +32,14 @@ const PostArticle = () => {
     mainImgCredit: "",
     secondImg: "",
     secondImgDescription: "",
-    secondImgCredit: ""    
+    secondImgCredit: "",
   };
 
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={( formData ) => {
+      onSubmit={(formData) => {
         setLoading(true);
         setError(undefined);
 
@@ -70,45 +67,42 @@ const PostArticle = () => {
             // get the article id and redirect to article's page.
           })
           .catch((e) => {
-            console.log(e.response.data);
             setError("something went wrong");
           })
           .finally(() => {
             setLoading(false);
           });
-      } }
-      >
-
+      }}
+    >
       <Form>
-      {loading && <Spinner title="" />}
-      {error && (
-        <p className="text-red-500 flex justify-center w-fit mx-auto px-10 py-5 mt-4 rounded-3xl italic shadow-md">
-          {error}
-        </p>
-      )}
-      
-        <div className="bg-white shadow-md rounded-lg my-2 w-1/2 mx-auto p-4 flex flex-col gap-2">
+        {loading && <Spinner title="" />}
+        {error && (
+          <p className="text-red-500 flex justify-center w-fit mx-auto px-10 py-5 mt-4 rounded-3xl italic shadow-md">
+            {error}
+          </p>
+        )}
 
+        <div className="bg-white shadow-md rounded-lg my-2 lg:w-1/2 mx-auto p-4 flex flex-col gap-2 dark:bg-slate-400">
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="title">Title:</label>
-            <Field 
-              className="px-2 py-1 rounded-md border-blue-300 border-2"
+            <Field
+              className="px-2 py-1 rounded-md border-blue-300 border-2  "
               placeholder="title..."
               name="title"
               type="text"
               id="title"
             />
             <ErrorMessage
-            name="title"
-            component="div"
-            className="text-red-500"
-          />
+              name="title"
+              component="div"
+              className="text-red-500"
+            />
           </div>
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="category">Category:</label>
-            <Field 
-              className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col"
+            <Field
+              className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col border-2 border-blue-300 rounded-md"
               name="category"
               as="select"
             >
@@ -120,16 +114,16 @@ const PostArticle = () => {
               <option value="tech">Tech</option>
             </Field>
             <ErrorMessage
-            name="category"
-            component="div"
-            className="text-red-500"
-          />
+              name="category"
+              component="div"
+              className="text-red-500"
+            />
           </div>
 
-          <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
+          <div className="font-extralight text-lg  my-2 h- form-group  gap-1 flex flex-col">
             <label htmlFor="content">Article content:</label>
-            <Field 
-              className="px-2 py-1 rounded-md border-blue-300 border-2"
+            <Field
+              className="px-2 py-1 rounded-md border-blue-300 border-2 h-64"
               as="textarea"
               placeholder="content..."
               name="content"
@@ -137,15 +131,15 @@ const PostArticle = () => {
               id="content"
             />
             <ErrorMessage
-            name="content"
-            component="div"
-            className="text-red-500"
-          />
+              name="content"
+              component="div"
+              className="text-red-500"
+            />
           </div>
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="secondaryTitle">Secondary title:</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="secondaryTitle..."
               name="secondaryTitle"
@@ -156,7 +150,7 @@ const PostArticle = () => {
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="mainImg">Main Image URL</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Main image URL..."
               name="mainImg"
@@ -167,7 +161,7 @@ const PostArticle = () => {
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="mainImgDescription">Main image description</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Main image description..."
               name="mainImgDescription"
@@ -178,7 +172,7 @@ const PostArticle = () => {
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="mainImgCredit">Main image credits</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Main image credits..."
               name="mainImgCredit"
@@ -187,10 +181,9 @@ const PostArticle = () => {
             />
           </div>
 
-                  
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="secondImg">Second Image URL</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Second image URL..."
               name="secondImg"
@@ -198,10 +191,12 @@ const PostArticle = () => {
               id="secondImg"
             />
           </div>
-                    
+
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
-            <label htmlFor="secondImgDescription">Second Image description</label>
-            <Field 
+            <label htmlFor="secondImgDescription">
+              Second Image description
+            </label>
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Second image description..."
               name="secondImgDescription"
@@ -212,7 +207,7 @@ const PostArticle = () => {
 
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
             <label htmlFor="secondImgCredit">Second image credits</label>
-            <Field 
+            <Field
               className="px-2 py-1 rounded-md border-blue-300 border-2"
               placeholder="Second image credits..."
               name="secondImgCredit"
@@ -221,19 +216,17 @@ const PostArticle = () => {
             />
           </div>
 
-
           <button
-          type='submit'
-          disabled={loading}
-          className="disabled:bg-fuchsia-700/50 rounded text-white px-3 py-2 w-full bg-fuchsia-700"
-        >
-          Post
-        </button>
-
+            type="submit"
+            disabled={loading}
+            className="disabled:bg-blue-200 rounded text-white px-3 py-2 w-full bg-blue-400"
+          >
+            Publish
+          </button>
         </div>
       </Form>
     </Formik>
-  )
-}
+  );
+};
 
-export default PostArticle
+export default PostArticle;

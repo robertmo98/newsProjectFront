@@ -17,18 +17,24 @@ const articleCard = (article: ArticleProps) => {
       key={article.id}
     >
       <div className="flex">
-        <div className="w-1/4">
-          {
-            <img
-              src={article.mainImg}
-              className="aspect-square max-h-48  m-2"
-            />
-          }
+        <div className="w-1/4  flex-col place-self-center">
+          <div className="place-self-center">
+            {
+              <img
+                src={article.mainImg}
+                className="aspect-square max-h-48 m-2"
+                alt="main image of  article"
+              />
+            }
+          </div>
         </div>
 
-        <div className="flex-col space-y-4 w-3/4 ">
+        <div className="flex-col space-y-2 w-3/4 ml-4 xl:ml-2 2xl:ml-0">
           <div className="flex justify-between font-extralight antialiased">
-            <p>{article.category}</p>
+            <div className="flex flex-col">
+              <p className="">{article.category}</p>
+              <p className="text-xs">{article.date}</p>
+            </div>
             <p>By {article.user?.username}</p>
           </div>
           <div>
@@ -36,10 +42,9 @@ const articleCard = (article: ArticleProps) => {
           </div>
 
           <div>
-            <p className="font-l">{truncate(article.content, 12)}</p>
-          </div>
-          <div>
-            <p></p>
+            <p className="font-l line-clamp-1 md:line-clamp-2 lg:line-clamp-3">
+              {truncate(article.content, 24)}
+            </p>
           </div>
         </div>
       </div>

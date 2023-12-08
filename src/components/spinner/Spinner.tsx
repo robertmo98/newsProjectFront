@@ -14,8 +14,8 @@ const Spinner = ({ title, className }: SpinnerProps) => {
      <CirclesWithBar
        wrapperClass=""
        height={100}
-       color="rgb(253,244,255)"
-       barColor="rgb(162,28,175)"
+       color="rgb(0,191,255)"
+       barColor="rgb(0,191,255)"
      />
    </div>
  );

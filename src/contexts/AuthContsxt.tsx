@@ -3,48 +3,41 @@ import { jwtDecode } from "jwt-decode";
 import { CustomJwtPayload, UserInfo } from "../@Types";
 import { useNavigate } from "react-router-dom";
 
-
-
 interface AuthContextState {
   isLoggedIn: boolean;
   isAdmin: boolean;
   token?: string;
   username?: string;
+  exp?: number;
   profilePic?: any;
   login: (username: string, token: string) => void;
   logout: () => void;
-  updateProfilePic: (url: string) => void
+  updateProfilePic: (url: string) => void;
 }
 
 const initialState = {
   isLoggedIn: false,
   isAdmin: false,
-  //todo: set a generic profile pic.
-  profilePic: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  exp: undefined,
+  profilePic: undefined,
   login: (username: string, token: string) => {},
   logout: () => {},
-  updateProfilePic:((url: string) =>{}),
+  updateProfilePic: (url: string) => {},
 };
 
-//create context
 const AuthContext = createContext<AuthContextState>(initialState);
 
-//wrapper component rafce:
-//used only in index.tsx (מנגיש את הקונטקסט לכל האפליקציה)
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setAdmin] = useState(false);
   const [profilePic, setProfilePic] = useState<string>();
   const [username, setUsername] = useState<string>();
   const [token, setToken] = useState<string>();
-  // const [isAdmin, setAdmin] = useState(false);
-
+  const [exp, setExp] = useState<number | undefined>(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    //code that runs once, thus no infinite render loop
-    //run code once the component is loaded to the dom:
     const data = localStorage.getItem("user");
-
 
     if (data) {
       const user = JSON.parse(data);
@@ -54,18 +47,34 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
       const decodedToken = jwtDecode<CustomJwtPayload>(user.token);
       setAdmin(decodedToken.role === "admin");
-      
-      const profilePicFromData = decodedToken.profilePic;
+      setExp(decodedToken.exp);
 
-        if(profilePicFromData && profilePicFromData?.length>1) {
-          setProfilePic(profilePicFromData);
-        } 
+      if (exp != undefined) {
+        const expirationTime = exp * 1000; /* Convert to milliseconds */
+        const currentTime = new Date().getTime();
+        const timeRemaining = expirationTime - currentTime;
+        const logoutTimer = setTimeout(() => {
+          /*Logout action: */
+          localStorage.removeItem("user");
+          setExp(undefined);
+          navigate("/login");
+          window.location.reload();
+        }, timeRemaining);
+        return () => clearTimeout(logoutTimer);
+      }
+
+      const profilePicFromData = decodedToken.profilePic;
+      if (profilePicFromData && profilePicFromData?.length > 1) {
+        setProfilePic(profilePicFromData);
+      } else {
+        setProfilePic(
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        );
+      }
     }
   }, [isLoggedIn]);
 
-  
   const auth = {
-  
     isLoggedIn: isLoggedIn,
     isAdmin: isAdmin,
     profilePic: profilePic,
@@ -87,7 +96,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     },
     updateProfilePic: (url: string) => {
       setProfilePic(url);
-    }
+    },
   };
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };

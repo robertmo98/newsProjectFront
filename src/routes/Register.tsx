@@ -18,7 +18,7 @@ const Register = () => {
     email: Yup.string().email().required(),
     password: Yup.string()
       .min(6)
-      .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{8,20}$/)
+      .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{8,20}$/, "Password must contain at least one lowercase letter, one uppercase , a number, and a symbol")
       .required(),
   });
 
@@ -46,7 +46,6 @@ const Register = () => {
             nav("/login");
           })
           .catch((e) => {
-            console.log(e.response.data);
             setError(e.response.data.message);
           })
           .finally(() => {
@@ -108,7 +107,7 @@ const Register = () => {
 
         <button
             disabled={loading}
-            className="disabled:bg-fuchsia-700/50 rounded text-white px-3 py-2 w-full bg-fuchsia-700"
+            className="bg-blue-400 disabled:bg-blue-200 rounded text-white px-3 py-2 w-full "
           >
             Register
           </button>

@@ -1,6 +1,5 @@
-import axios from "axios";
 import { request } from "../components/utils/axios-interceptors";
-import { ArticleProps } from "../@Types";
+import { ArticleProps, ArticleUpdateProps } from "../@Types";
 
 const baseUrl = "http://localhost:8080/api/v1/articles";
 
@@ -13,7 +12,7 @@ const createArticle = (articleData: ArticleProps) => {
   return request(config);
 };
 
-export const updateArticle = (articleData: ArticleProps, id: string) => {
+export const updateArticle = (articleData: ArticleUpdateProps, id: string) => {
   const config = {
     method: "put",
     url: `${baseUrl}/${id}`,
@@ -22,5 +21,13 @@ export const updateArticle = (articleData: ArticleProps, id: string) => {
   return request(config);
 };
 
-const articlesService = { createArticle, updateArticle };
+export const deleteArticle = (id: any) => {
+  const config = {
+    method: "delete",
+    url: `${baseUrl}/${id}`,
+  };
+  return request(config);
+};
+
+const articlesService = { createArticle, updateArticle, deleteArticle };
 export default articlesService;

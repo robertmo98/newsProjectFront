@@ -1,10 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import commentsService from "../../services/comments-service";
 import Swal from "sweetalert2";
-import Comment from "./Comment";
 import { PostCommentProps } from "../../@Types";
 
 const PostComment = (props: PostCommentProps) => {
@@ -14,12 +13,12 @@ const PostComment = (props: PostCommentProps) => {
   const { id } = useParams();
 
   const validationSchema = Yup.object({
-    content: Yup.string().required(),
+    comment: Yup.string().max(164),
     id: Yup.number(),
   });
 
   const initialValues = {
-    content: "",
+    comment: "",
   };
 
   return (
@@ -31,7 +30,7 @@ const PostComment = (props: PostCommentProps) => {
         setError(undefined);
 
         const commentData = {
-          content: formData.content,
+          content: formData.comment,
         };
 
         commentsService
@@ -42,26 +41,26 @@ const PostComment = (props: PostCommentProps) => {
               icon: "success",
               timer: 2000,
             });
+            setTimeout(() => window.location.reload(), 2000);
           })
           .catch((e) => {
             setError("something went wrong");
           })
           .finally(() => {
             setLoading(false);
-            props.refresh();
           });
       }}
     >
       <Form>
-        <div className="bg-white shadow-md rounded-lg my-2 w-1/2 mx-auto p-4 flex flex-col gap-2">
+        <div className="bg-white shadow-md rounded-lg my-2 w-2/3 mx-auto p-4 flex flex-col gap-2 dark:bg-slate-800">
           <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
-            <label htmlFor="">Comment:</label>
+            <label htmlFor="comment">Post a comment:</label>
             <Field
-              className="px-2 py-1 rounded-md border-blue-300 border-2"
+              className="px-2 py-1 rounded-md border-blue-300 border-2 dark:text-black"
               placeholder="comment..."
-              name="content"
+              name="comment"
               type="text"
-              id="content"
+              id="comment"
             />
             <ErrorMessage
               name="comment"
@@ -73,7 +72,7 @@ const PostComment = (props: PostCommentProps) => {
           <button
             type="submit"
             disabled={loading}
-            className="disabled:bg-fuchsia-700/50 rounded text-white px-3 py-2 w-full bg-fuchsia-700"
+            className="disabled:bg-slate-300 rounded text-white px-3 py-2 w-full bg-slate-500 dark:bg-slate-600 "
           >
             Post Comment
           </button>

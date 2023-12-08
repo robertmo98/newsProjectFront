@@ -2,10 +2,9 @@ import { useContext, useState } from "react";
 import NewsContext from "../contexts/NewsContext";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
-import ReactPaginate, { ReactPaginateProps } from "react-paginate";
-import "/Users/robertmopsik/Projects/Frontend/newsfront/src/components/pagination-bar/pagination.css";
 import CategoryHeader from "../components/CategoryHeader";
 import AddsZone from "../components/advertisements/AdsZone";
+
 const Physics = () => {
   const { articles, setArticles } = useContext(NewsContext);
   const physicsArticles = articles.filter(
@@ -31,7 +30,7 @@ const Physics = () => {
       <CategoryHeader subject="Physics" />
 
       <div className="flex justify-between ">
-        <div className="w-2/3 pl-24">
+        <div className="w-2/3 lg:pl-24">
           {displayArticles?.map((article) => (
             <ArticleCard
               id={article.id}
@@ -41,6 +40,7 @@ const Physics = () => {
               title={article.title}
               content={article.content}
               mainImg={article.mainImg}
+              date={article.date}
             />
           ))}
         </div>

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NewsContext from "../contexts/NewsContext";
 import { ArticleProps } from "../@Types";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
-import Add from "../components/advertisements/Ad";
 import AddsZone from "../components/advertisements/AdsZone";
 
 const AllTopics = () => {
@@ -35,20 +34,20 @@ const AllTopics = () => {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="text-sky-900 font- font-mono pl-4 dark:text-white">
+        <h2 className="text-sky-900 font- font-mono pl-12  lg:pl-24 dark:text-white">
           Dicsover the latest topics
         </h2>
 
         <input
-          className="pr-64 bg-slate-100 dark:bg-inherit dark:placeholder-yellow-100 dark:text-yellow-100"
-          placeholder="Search title"
+          className="lg:pr-64 bg-inherit dark:bg-inherit dark:placeholder-yellow-100 dark:text-yellow-100"
+          placeholder="Search title" //todo: add a search icon
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
         ></input>
       </div>
       <hr />
 
       <div className="flex justify-between">
-        <div className="w-2/3 pl-24">
+        <div className="w-2/3 lg:pl-24">
           {search == "" &&
             displayArticles?.map((article: ArticleProps) => (
               <ArticleCard
@@ -59,17 +58,20 @@ const AllTopics = () => {
                 title={article.title}
                 content={article.content}
                 mainImg={article.mainImg}
+                date={article.date}
               />
             ))}
           {search !== "" &&
             filteredArticles.map((article) => (
               <ArticleCard
                 id={article.id}
+                user={article.user}
                 key={article.id}
                 category={article.category}
                 title={article.title}
                 content={article.content}
                 mainImg={article.mainImg}
+                date={article.date}
               />
             ))}
         </div>

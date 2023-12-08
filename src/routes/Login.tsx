@@ -10,17 +10,7 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
-
   const navigate = useNavigate();
-
-  const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
-
-  // useEffect(() => {ß
-  //   if (shouldRedirect) {
-
-  //     navigate("/");
-  //   }
-  // }, [shouldRedirect, navigate]);
 
   const validationSchema = Yup.object({
     username: Yup.string().min(2).required(),
@@ -47,11 +37,10 @@ const Login = () => {
           .then((res) => {
             //save the username and jwt in the app context (in memory - app wide state)
             login(username, res.data.jwt);
-            setShouldRedirect(true);
-            window.location.reload();
+            setLoading(false);
+            navigate("/home");
           })
           .catch((e) => {
-            console.log(e.response.data);
             setError("Sign in failed, username or password is incorrect");
           })
           .finally(() => {
@@ -104,7 +93,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="disabled:bg-fuchsia-700/50 rounded text-white px-3 py-2 w-full bg-fuchsia-700"
+            className="bg-blue-400  disabled:bg-blue-200 rounded-md text-white px-3 py-2 w-full "
           >
             Login
           </button>

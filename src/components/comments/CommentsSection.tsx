@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "react-query";
 import { CommentProps } from "../../@Types";
 import Comment from "./Comment";
 import PostComment from "./PostComment";
@@ -8,18 +8,15 @@ import commentsService from "../../services/comments-service";
 
 const CommentsSection = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-
-
   const fetchComments = () => commentsService.getComments(id);
   const { isLoading, data: res } = useQuery("get-comments", fetchComments);
   const [comments, setComments] = useState([]);
 
-  const[shouldReload, setShouldReload] = useState(0);
+  const [shouldReload, setShouldReload] = useState(0);
 
   const reload = () => {
-    fetchComments()
-    setShouldReload(shouldReload+1);
+    fetchComments();
+    setShouldReload(shouldReload + 1);
   };
 
   useEffect(() => {
@@ -29,10 +26,10 @@ const CommentsSection = () => {
   }, [res]);
 
   return (
-    <div>
+    <div className="pt-4">
       <hr />
-      <h2>Comments</h2>
-      <PostComment refresh={reload}/>
+      <h1 className="font-bold text-2xl">Comments</h1>
+      <PostComment refresh={reload} />
       <hr />
 
       {comments?.map((comment: CommentProps) => (

@@ -19,6 +19,25 @@ export interface ArticleProps {
   secondImgCredit?: string;
 }
 
+export interface ArticleUpdateProps {
+  id?: number;
+  user?: {
+    username: string;
+    profilePic: string;
+  };
+  category: string;
+
+  date?: string;
+  content: string;
+  mainImg?: string;
+  mainImgDescription?: string;
+  mainImgCredit?: string;
+  secondaryTitle?: string;
+  secondImg?: string;
+  secondImgDescription?: string;
+  secondImgCredit?: string;
+}
+
 export interface CommentProps {
   id: number;
   content: string;

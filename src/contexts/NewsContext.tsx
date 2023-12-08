@@ -1,28 +1,28 @@
 import { ReactNode, createContext, useState } from "react";
-import { ArticleProps } from "../@Types"
+import { ArticleProps } from "../@Types";
 
 interface NewsContextState {
-    articles: ArticleProps[];
-    setArticles: (articles: ArticleProps[]) => void;
+  articles: ArticleProps[];
+  setArticles: (articles: ArticleProps[]) => void;
 }
 
-const initialState : NewsContextState = {
-    articles: [],
-    setArticles: () => {},
+const initialState: NewsContextState = {
+  articles: [],
+  setArticles: () => {},
 };
 
-//create context
+/* create context */
 const NewsContext = createContext<NewsContextState>(initialState);
 
-//wrapper component:
-export const NewsContextProvider = ({children} : {children: ReactNode}) => {
-    const [articles, setArticles] = useState<ArticleProps[]>([]);
+/* wrapper component: */
+export const NewsContextProvider = ({ children }: { children: ReactNode }) => {
+  const [articles, setArticles] = useState<ArticleProps[]>([]);
 
-    return (
-        <NewsContext.Provider value={{articles, setArticles}}>
-            {children}
-        </NewsContext.Provider>
-    )
+  return (
+    <NewsContext.Provider value={{ articles, setArticles }}>
+      {children}
+    </NewsContext.Provider>
+  );
 };
 
 export default NewsContext;

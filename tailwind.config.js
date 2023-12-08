@@ -9,6 +9,9 @@ module.exports = {
       blur: {
         sm: '1px',
       },
+      maxHeight: {
+        '128': '32rem',
+      }
     },
   },
   plugins: [],

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { Field, Formik, Form, ErrorMessage } from "formik";
@@ -18,7 +18,6 @@ const EditArticle = () => {
 
   if (article) {
     const validationSchema = Yup.object({
-      title: Yup.string().min(6).required(),
       category: Yup.string().required(),
       content: Yup.string().min(128).required(),
       secondaryTitle: Yup.string(),
@@ -52,7 +51,6 @@ const EditArticle = () => {
           setError(undefined);
 
           const articleData = {
-            title: formData.title,
             category: formData.category,
             content: formData.content,
             secondaryTitle: formData.secondaryTitle,
@@ -72,11 +70,10 @@ const EditArticle = () => {
                   icon: "success",
                   timer: 2000,
                 });
-                // get the article id and redirect to article's page.
+                window.location.reload();
               })
               .catch((e) => {
-                console.log(e?.response?.data);
-                setError("something went wrong");
+                setError(e?.response?.data?.message);
               })
               .finally(() => {
                 setLoading(false);
@@ -98,15 +95,16 @@ const EditArticle = () => {
             </p>
           )}
 
-          <div className="bg-white shadow-md rounded-lg my-2 w-1/2 mx-auto p-4 flex flex-col gap-2">
+          <div className="bg-white shadow-md rounded-lg my-2 lg:w-1/2 mx-auto p-4 flex flex-col gap-2 dark:bg-slate-400">
             <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
               <label htmlFor="title">Title:</label>
               <Field
-                className="px-2 py-1 rounded-md border-blue-300 border-2"
+                className="px-2 py-1 w-fit bg-gray-100 underline rounded-md"
                 placeholder="title..."
                 name="title"
                 type="text"
                 id="title"
+                disabled
               />
               <ErrorMessage
                 name="title"
@@ -118,7 +116,7 @@ const EditArticle = () => {
             <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
               <label htmlFor="category">Category:</label>
               <Field
-                className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col"
+                className="font-extralight text-lg  my-2 form-group gap-1 flex flex-col border-2 border-blue-300 rounded-md"
                 name="category"
                 as="select"
               >
@@ -139,7 +137,7 @@ const EditArticle = () => {
             <div className="font-extralight text-lg  my-2 form-group  gap-1 flex flex-col">
               <label htmlFor="content">Article content:</label>
               <Field
-                className="px-2 py-1 rounded-md border-blue-300 border-2"
+                className="px-2 py-1 rounded-md border-blue-300 border-2 h-64"
                 as="textarea"
                 placeholder="content..."
                 name="content"
@@ -235,9 +233,9 @@ const EditArticle = () => {
             <button
               type="submit"
               disabled={loading}
-              className="disabled:bg-fuchsia-700/50 rounded text-white px-3 py-2 w-full bg-fuchsia-700"
+              className="disabled:bg-blue-200 rounded text-white px-3 py-2 w-full bg-blue-400"
             >
-              Post
+              Commit changes
             </button>
           </div>
         </Form>

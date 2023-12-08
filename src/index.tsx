@@ -6,7 +6,7 @@ import { AuthContextProvider } from "./contexts/AuthContsxt";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { NewsContextProvider } from "./contexts/NewsContext";
 import App from "./App";
-import DarkModeContext, { DarkModeContexProvider } from "./contexts/DarkModeContext";
+import { DarkModeContexProvider } from "./contexts/DarkModeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,11 +17,11 @@ root.render(
   <QueryClientProvider client={client}>
     <NewsContextProvider>
       <DarkModeContexProvider>
-      <BrowserRouter>
-        <AuthContextProvider>
-          <App />
-        </AuthContextProvider>
-      </BrowserRouter>
+        <BrowserRouter>
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </BrowserRouter>
       </DarkModeContexProvider>
     </NewsContextProvider>
   </QueryClientProvider>
