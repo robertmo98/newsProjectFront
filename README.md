@@ -1,7 +1,7 @@
 # News Project - REACT.JS Frontend
 ![Website visual demonstration](/src/ui/image.png)
 
-This is the frontend part of a final fullstack project that communicates with the [REST Spring Boot news-project server](https://github.com/robertmo98/newsProject/tree/main) thorugh http requests.
+This is the frontend part of a final fullstack project that communicates with the [REST Spring Boot news-project server](https://github.com/robertmo98/newsProject-backend.git) thorugh http requests.
 
 ## Getting Started
 
@@ -17,14 +17,16 @@ Make sure you have Node.js and npm installed on your machine. You can download t
    git clone https://github.com/robertmo98/newsProjectFront.git
    cd newsProjectFront
 
-2. Install dependencies: 
-    npm install
+2. Install dependencies:
+   ```bash
+   npm install
 
 ### Starting up the application
 1. run the designated server:
-- [REST Spring Boot news-project server](https://github.com/robertmo98/newsProject/tree/main).
+- [REST Spring Boot news-project server](https://github.com/robertmo98/newsProject-backend.git).
 2. run this application:
-- npm start
+   ```bash
+   npm start
 
 # Basic usage and features:
 ## Admin user:
