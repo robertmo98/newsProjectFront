@@ -17,8 +17,9 @@ Make sure you have Node.js and npm installed on your machine. You can download t
    git clone https://github.com/robertmo98/newsProjectFront.git
    cd newsProjectFront
 
-2. Install dependencies: 
-    npm install
+2. Install dependencies:
+   ```bash
+   npm install
 
 ### Starting up the application
 1. run the designated server:
