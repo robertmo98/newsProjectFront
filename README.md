@@ -30,12 +30,12 @@ Make sure you have Node.js and npm installed on your machine. You can download t
 ## Admin user:
 - Regular users can be set as admin only directly in the server, by the programmer.
 - Admin has the "Editor" button (star icon) newt to the profile picture, up in the navbar that allows to post an article (submitting the articles sends the form's data via http request to save the article on the database).
-![Editor button](/src/ui/image-6.png)
+![Editor button](/src/ui/image-1.png)
 - To prevent confusions, logged users that are set as admin (on the server) are identified by the application and (in addition to the "Editor" button) will see the "Logged as editor" marked bar right under the navigation bar.
-![Editor bar](/src/ui/image-7.png)
+![Editor bar](/src/ui/image.png)
 - Moreover, entering any article, admin has two additional buttons on the upper right front of the article- edit and delete.
 the edit button allows the admin to edit any article (directrly updates the article on the db), and the edit allows to delete the article from the db.
-![Admin's article buttons](/src/ui/image-8.png)
+![Admin's article buttons](/src/ui/image-3.png)
 ## Regular registered user: 
 - Any user is exposed to all of the articles. 
 - Any user can post comments to all of the articles.
@@ -48,16 +48,16 @@ the edit button allows the admin to edit any article (directrly updates the arti
 - Upper navigation bar: displays the categories, (for admin - "Editor" button), profile picture (that leads to profile settings), 
 logout button and dark mode toggle button.
 ![navigation bar](image.png)
-- for admin - Editor bar 
+- for admin - Editor bar <br/>
 ![Editor button](/src/ui/image-1.png)
 - The current category bar that shows the current category of articles to display.
-![category bar demonstration](/src/ui/image-1.png)
+![category bar demonstration](/src/ui/image-6.png)
 - The search input that allows to filter the articles that match the search word (shown only on "All Topics" category!)
-![search box demonstration](/src/ui/image-2.png)
+![search box demonstration](/src/ui/image-7.png)
 - A list of maximum 10 articles per page.
 - Pagination bar to switch between pages.
 - Footer, that contains link to the "Terms of use" page.
-![website footer](/src/ui/image-3.png)
+![website footer](/src/ui/image-8.png)
 - The website is designed to store the user's JWT, allowing long-time connectivity without needing to login every time (currently, the server is designed to produce JWT that is valid for 7 days on each login request).
 
 # Terms of use[Terms of use] 
