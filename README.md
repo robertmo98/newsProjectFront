@@ -25,7 +25,8 @@ Make sure you have Node.js and npm installed on your machine. You can download t
 1. run the designated server:
 - [REST Spring Boot news-project server](https://github.com/robertmo98/newsProject-backend.git).
 2. run this application:
-- npm start
+   ```bash
+   npm start
 
 # Basic usage and features:
 ## Admin user:
