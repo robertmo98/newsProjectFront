@@ -46,13 +46,18 @@ the edit button allows the admin to edit any article (directrly updates the arti
 
 ## Website stracture:
 - Upper navigation bar: displays the categories, (for admin - "Editor" button), profile picture (that leads to profile settings), 
-logout button and dark mode toggle button.e
+logout button and dark mode toggle button.
+![navigation bar](image.png)
 - for admin - Editor bar 
+![Editor button](/src/ui/image-1.png)
 - The current category bar that shows the current category of articles to display.
+![category bar demonstration](image-1.png)
 - The search input that allows to filter the articles that match the search word (shown only on "All Topics" category!)
+![search box demonstration](image-2.png)
 - A list of maximum 10 articles per page.
 - Pagination bar to switch between pages.
 - Footer, that contains link to the "Terms of use" page.
+![website footer](image-3.png)
 - The website is designed to store the user's JWT, allowing long-time connectivity without needing to login every time (currently, the server is designed to produce JWT that is valid for 7 days on each login request).
 
 # Terms of use[Terms of use] 
