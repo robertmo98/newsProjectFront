@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContsxt";
-import ProfilePic from "../UserProfilePic";
+import ProfilePic from "../user/UserProfilePic";
 import DarkModeContext from "../../contexts/DarkModeContext";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import logo from "../../ui/logo.svg";
@@ -27,7 +27,7 @@ const Navbar = () => {
         </NavLink>
       )}
       {!isLoggedIn && (
-        <img src={logo} className="h-12 w-12" alt="user's image" />
+        <img src={logo} className="h-12 w-12" alt="user's profile" />
       )}
       {isLoggedIn && (
         <NavLink

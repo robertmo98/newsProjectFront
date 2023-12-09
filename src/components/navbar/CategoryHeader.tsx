@@ -1,4 +1,4 @@
-import { CategoryHeaderProps } from "../@Types";
+import { CategoryHeaderProps } from "../../@Types";
 
 const CategoryHeader = ({ subject }: CategoryHeaderProps) => {
   return (

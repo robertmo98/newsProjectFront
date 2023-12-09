@@ -10,7 +10,7 @@ import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Navbar from "./components/navbar/Navbar";
 import NotFound from "./routes/NotFound";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "./contexts/AuthContsxt";
 import PostArticle from "./routes/PostArticle";
 import Article from "./routes/Article";
@@ -20,7 +20,7 @@ import { allNewsRequest } from "./services/news-service";
 import Spinner from "./components/spinner/Spinner";
 import EditArticle from "./routes/EditArticle";
 import UserProfile from "./routes/UserProfile";
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 import AdminHeader from "./components/adminControls/AdminHeader";
 import Terms from "./routes/Terms";
 
@@ -28,7 +28,6 @@ const App = () => {
   const { isLoading, data: res } = useQuery("get-articles", allNewsRequest);
   const { setArticles } = useContext(NewsContext);
   const { isLoggedIn, isAdmin, profilePic } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (res && res.data && isLoggedIn) {

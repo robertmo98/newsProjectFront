@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
 import authService from "../services/auth-service";
 import { useNavigate } from "react-router-dom";
@@ -14,10 +14,7 @@ const Login = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string().min(2).required(),
-    password: Yup.string()
-      .min(4)
-      .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\W).{8,20}$/)
-      .required(),
+    password: Yup.string().required(),
   });
 
   const intiailValues = {

@@ -2,7 +2,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { SlPhone } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-import logo from "../ui/logo.svg";
+import logo from "../../ui/logo.svg";
 
 
 const Footer = () => {

@@ -2,14 +2,13 @@ import { useContext, useState } from "react";
 import NewsContext from "../contexts/NewsContext";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
-import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import "/Users/robertmopsik/Projects/Frontend/newsfront/src/components/pagination-bar/pagination.css";
-import CategoryHeader from "../components/CategoryHeader";
+import CategoryHeader from "../components/navbar/CategoryHeader";
 import AddsZone from "../components/advertisements/AdsZone";
 const Space = () => {
-  const { articles, setArticles } = useContext(NewsContext);
+  const { articles } = useContext(NewsContext);
   const spaceArticles = articles.filter(
-    (article) => article.category == "Space"
+    (article) => article.category === "Space"
   );
 
   const [pageNumber, setPageNumber] = useState(0);

@@ -3,13 +3,13 @@ import NewsContext from "../contexts/NewsContext";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
 import "/Users/robertmopsik/Projects/Frontend/newsfront/src/components/pagination-bar/pagination.css";
-import CategoryHeader from "../components/CategoryHeader";
+import CategoryHeader from "../components/navbar/CategoryHeader";
 import AddsZone from "../components/advertisements/AdsZone";
 
 const Biology = () => {
-  const { articles, setArticles } = useContext(NewsContext);
+  const { articles } = useContext(NewsContext);
   const biologyArticles = articles.filter(
-    (article) => article.category == "Biology"
+    (article) => article.category === "Biology"
   );
 
   const [pageNumber, setPageNumber] = useState(0);

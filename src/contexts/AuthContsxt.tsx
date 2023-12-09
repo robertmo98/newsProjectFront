@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { CustomJwtPayload, UserInfo } from "../@Types";
+import { CustomJwtPayload } from "../@Types";
 import { useNavigate } from "react-router-dom";
 
 interface AuthContextState {
@@ -48,8 +48,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       const decodedToken = jwtDecode<CustomJwtPayload>(user.token);
       setAdmin(decodedToken.role === "admin");
       setExp(decodedToken.exp);
+      setProfilePic(decodedToken.profilePic);
 
-      if (exp != undefined) {
+      if (exp !== undefined) {
         const expirationTime = exp * 1000; /* Convert to milliseconds */
         const currentTime = new Date().getTime();
         const timeRemaining = expirationTime - currentTime;
@@ -63,14 +64,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         return () => clearTimeout(logoutTimer);
       }
 
-      const profilePicFromData = decodedToken.profilePic;
-      if (profilePicFromData && profilePicFromData?.length > 1) {
-        setProfilePic(profilePicFromData);
-      } else {
-        setProfilePic(
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-        );
-      }
+      
     }
   }, [isLoggedIn]);
 

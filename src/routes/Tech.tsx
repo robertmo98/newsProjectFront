@@ -3,11 +3,11 @@ import NewsContext from "../contexts/NewsContext";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
 import "/Users/robertmopsik/Projects/Frontend/newsfront/src/components/pagination-bar/pagination.css";
-import CategoryHeader from "../components/CategoryHeader";
+import CategoryHeader from "../components/navbar/CategoryHeader";
 import AddsZone from "../components/advertisements/AdsZone";
 const Tech = () => {
-  const { articles, setArticles } = useContext(NewsContext);
-  const techArticles = articles.filter((article) => article.category == "Tech");
+  const { articles } = useContext(NewsContext);
+  const techArticles = articles.filter((article) => article.category === "Tech");
 
   const [pageNumber, setPageNumber] = useState(0);
   const articlesPerPage = 10;

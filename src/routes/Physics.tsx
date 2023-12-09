@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import NewsContext from "../contexts/NewsContext";
 import ArticleCard from "../components/article/ArticleCard";
 import PaginationBar from "../components/pagination-bar/PaginationBar";
-import CategoryHeader from "../components/CategoryHeader";
+import CategoryHeader from "../components/navbar/CategoryHeader";
 import AddsZone from "../components/advertisements/AdsZone";
 
 const Physics = () => {
-  const { articles, setArticles } = useContext(NewsContext);
+  const { articles } = useContext(NewsContext);
   const physicsArticles = articles.filter(
-    (article) => article.category == "Physics"
+    (article) => article.category === "Physics"
   );
 
   const [pageNumber, setPageNumber] = useState(0);
